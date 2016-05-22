@@ -42,4 +42,6 @@ def addbar(target, barlist, racklist):
     print discardlist
     racklist = racklist + discardlist
     print racklist
-    return    
+    return
+
+print("hello")
