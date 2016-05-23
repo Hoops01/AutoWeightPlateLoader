@@ -44,4 +44,24 @@ def addbar(target, barlist, racklist):
     print racklist
     return
 
-print("hello")
+def randomload(target, barlist, racklist):
+    import random
+    onbar = sum(barlist)
+    counter = 0
+    while onbar != target:
+        onbar = sum(barlist)
+        remaining = target - onbar
+        r = random.choice(racklist)
+        if r <= remaining:
+            barlist.append(r)
+            racklist.remove(r)
+        counter += 1
+        if counter > 1000:
+            break
+
+racklist = [20,20,10,5,5,2.5,2.5,1.25,1.25]
+barlist = []
+
+randomload(41.25,barlist,racklist)
+print sorted(racklist)
+print sorted(barlist), sum(barlist)
