@@ -8,19 +8,25 @@ Created on Sun May 22 15:22:09 2016
 import numpy as np
 import random
 
-def minbar(target, racklist):
-    barlist = []
-    remainder = target
-    while remainder <> 0:
-        maxweight = max(racklist)
-        if maxweight <= remainder:
-            # Yes, then add maxweight to bar and remove from rack
-            remainder = remainder - maxweight
-            barlist.append(maxweight)
-            print "Added ", maxweight, "to bar, ", remainder, "to go"
-        racklist.remove(maxweight)
+def minbar(target, barlist, racklist):
+    remainder = target - sum(barlist)
+    while remainder > 0:
+        maxplate = max(racklist)
+        if maxplate <= remainder:
+            remainder = remainder - maxplate
+            barlist.append(maxplate)
+            racklist.remove(maxplate)
+            print "Added ", maxplate, "to bar, ", remainder, "to go"
+        racklist.remove(maxplate)
+        print racklist, remainder
+        if min(racklist) > remainder:
+            print "could not complete target"
+            break
 
-    return barlist
+    return
+
+
+    return
 
 def addbar(target, barlist, racklist):
     discardlist = []
@@ -78,6 +84,8 @@ def emptybar(barlist,racklist):
         barlist.remove(plate)
         racklist.append(plate)
     #racklist.sort(reverse=True)
+
+
 
 racklist = [20,20,10,5,5,2.5,2.5,1.25,1.25]
 barlist = []
